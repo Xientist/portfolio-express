@@ -9,5 +9,5 @@ app.engine("html", require("hogan-express"));
 app.use("/", require("./routes/index.js"));
 
 app.listen(3000, () => {
-    console.log("App started on port 3000");
+    console.log("[Info]: App started on port 3000");
 });

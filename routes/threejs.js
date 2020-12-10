@@ -1,21 +1,28 @@
 const express = require("express");
+const path = require("path");
 const fs = require("fs");
+const View = require("../src/view");
 
-threejsRouter = express.Router();
+subrouter = express.Router();
+
+modelPath = "public/resources/models/";
+modelExtension = ".glb";
 
 mwDefault = (req, res) => {
-    res.redirect("threejs/default");
+    res.redirect("threejs/load/default");
 };
 
 mwLoad = (req, res, next) => {
+    filename = path.basename(__filename, path.extname(__filename));
+    view = new View(filename);
     mdl = req.params.model;
-    path = "public/resources/models/" + mdl + ".glb";
-    if(fs.existsSync(path)) {
-        res.render("threejs/main", {
+    filePath = modelPath + mdl + modelExtension;
+    if(fs.existsSync(filePath)) {
+        res.render(view.getPath("main"), {
             model: mdl,
             partials: {
-                body: "threejs/body",
-                three: "threejs/three"
+                body: view.getPath("body"),
+                three: view.getPath("three")
             }
         });
     } else {
@@ -28,7 +35,7 @@ mwModelNotFound = (req, res) => {
     res.send("The specified model '" + mdl + "' does not exist.");
 };
 
-threejsRouter.all("/", mwDefault);
-threejsRouter.get("/:model", mwLoad, mwModelNotFound);
+subrouter.get("/", mwDefault);
+subrouter.get("/load/:model", mwLoad, mwModelNotFound);
 
-module.exports = threejsRouter;
+module.exports = subrouter;

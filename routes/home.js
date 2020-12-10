@@ -1,13 +1,18 @@
 const express = require("express");
+const path = require("path");
+const fs = require("fs");
+const View = require("../src/view");
 
-homeRouter = express.Router();
+subrouter = express.Router();
 
-homeRouter.all("/", (req, res) => {
-    res.render("home/main", {
+subrouter.get("/", (req, res) => {
+    filename = path.basename(__filename, path.extname(__filename));
+    view = new View(filename);
+    res.render(view.getPath("main"), {
         partials: {
-            body: "home/body"
+            body: view.getPath("body")
         }
     });
 })
 
-module.exports = homeRouter;
+module.exports = subrouter;
