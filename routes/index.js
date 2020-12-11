@@ -21,7 +21,7 @@ fs.readdir(routesPath, (err, files) => {
         ext = path.extname(file);
         routerName = path.basename(file, ext);
         router.use("/" + routerName, require("./" + file));
-        console.log("[Info]: Router '" + routerName + "' loaded");
+        console.log("[Info]: Router '" + routerName + "' mounted");
     });
 });
 

@@ -8,8 +8,6 @@ subrouter.get("/", (req, res) => {
     filename = path.basename(__filename, path.extname(__filename));
     view = new View(filename);
     res.render(view.getPath("main"), {
-        title: "Bienvenue sur mon portfolio !",
-        name: "Julien Weissenberger",
         partials: {
             body: view.getPath("body")
         }
