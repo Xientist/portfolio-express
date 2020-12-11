@@ -7,11 +7,15 @@ html, body {
     scroll-behavior: smooth;
 }
 
+.mw-75 {
+    max-width: 75%;
+}
+
 .bg-zebra-circle {
     background-image: repeating-radial-gradient(circle, 
-    rgba(248,249,250,1), rgba(248,249,250,1) 9px, 
-    rgba(255,255,255,0) 10px, rgba(255,255,255,0) 19px,
-    rgba(248,249,250,1) 20px);
+    rgba(248,249,250,1), rgba(248,249,250,1) 0.4vh, 
+    rgba(255,255,255,0) 0.5vh, rgba(255,255,255,0) 0.9vh,
+    rgba(248,249,250,1) 1vh);
     box-shadow: inset 0 3em 30px #F8F9FA;
 }
 
@@ -19,9 +23,9 @@ html, body {
     background-attachment: fixed;
     background-size: 150% 150%;
     background-image: repeating-linear-gradient(110deg,
-    rgb(200, 215, 210), rgb(200, 215, 210) 6px,
-    rgb(190, 205, 200) 7px, rgb(190, 205, 200) 13px,
-    rgb(200, 215, 210) 14px);
+    rgb(200, 215, 210), rgb(200, 215, 210) 0.4vh,
+    rgb(190, 205, 200) 0.5vh, rgb(190, 205, 200) 0.9vh,
+    rgb(200, 215, 210) 1vh);
 }
 
 .sticky-bottom {
@@ -38,13 +42,13 @@ html, body {
 }
 
 .diagonal-text-list {
-    height: 25%;
-    overflow-x: hidden;
+    height: 25%;    
+    overflow: hidden;
 }
 
 .diagonal-text-list > * {
     transform: rotate(-70deg);
-    width: 1em;
+    width: 7vh;
     color: #E8E8E8;
     font-size: 6vh;
     white-space: nowrap;
@@ -52,10 +56,12 @@ html, body {
 
 .title-hybrid {
     font-size: 4vh;
+    font-weight: bold;
 }
 
 .subtitle-hybrid {
-    font-size: 3vh;
+    font-size: 2vh;
+    font-weight: normal;
 }
 
 @media (orientation: portrait) {
