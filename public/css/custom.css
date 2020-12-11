@@ -1,3 +1,12 @@
+html, body {
+    width: 100%;
+    height: 100%;
+    margin: 0px;
+    padding: 0px;
+    overflow-x: hidden;
+    scroll-behavior: smooth;
+}
+
 .bg-zebra-circle {
     background-image: repeating-radial-gradient(circle, 
     rgba(248,249,250,1), rgba(248,249,250,1) 9px, 
@@ -8,6 +17,7 @@
 
 .bg-zebra {
     background-attachment: fixed;
+    background-size: 150% 150%;
     background-image: repeating-linear-gradient(110deg,
     rgb(200, 215, 210), rgb(200, 215, 210) 6px,
     rgb(190, 205, 200) 7px, rgb(190, 205, 200) 13px,
@@ -17,12 +27,37 @@
 .sticky-bottom {
     position: -webkit-sticky;
     position: sticky;
-    bottom: 50px;
-    margin-top: -120px;
-    margin-bottom: -120px;
+    bottom: 15vh;
+    margin-top: -30vh;
+    margin-bottom: -30vh;
 }
 
 .bubble {
     border-radius: 50%;
-    padding: 1em;
+    padding: 2vh;
+}
+
+.diagonal-text-list {
+    height: 25%;
+    overflow-x: hidden;
+}
+
+.diagonal-text-list > * {
+    transform: rotate(-70deg);
+    width: 1em;
+    color: #E8E8E8;
+    font-size: 6vh;
+    white-space: nowrap;
+}
+
+.title-hybrid {
+    font-size: 4vh;
+}
+
+.subtitle-hybrid {
+    font-size: 3vh;
+}
+
+@media (orientation: portrait) {
+
 }
