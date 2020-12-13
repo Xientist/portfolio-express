@@ -7,11 +7,15 @@ subrouter = express.Router();
 subrouter.get("/", (req, res) => {
     filename = path.basename(__filename, path.extname(__filename));
     view = new View(filename);
-    res.render(view.getPath("main"), {
+    res.locals = {
         title: "Bienvenue sur mon portfolio !",
         name: "Julien Weissenberger",
+        controllers: req.app.locals.controllers
+    }
+    res.render(view.getPath("main"), {
         partials: {
-            body: view.getPath("body")
+            titlescreen: view.getPath("titlescreen"),
+            menu: view.getPath("menu")
         }
     });
 })

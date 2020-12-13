@@ -18,8 +18,10 @@ mwLoad = (req, res, next) => {
     mdl = req.params.model;
     filePath = modelPath + mdl + modelExtension;
     if(fs.existsSync(filePath)) {
+        res.locals = {
+            model: mdl
+        }
         res.render(view.getPath("main"), {
-            model: mdl,
             partials: {
                 body: view.getPath("body"),
                 three: view.getPath("three")

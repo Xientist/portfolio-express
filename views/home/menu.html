@@ -1,0 +1,20 @@
+<div>
+    <a id="summary"></a>
+    <div class="w-100 h-100 position-relative">
+        <div class="w-100 h-100 d-flex home-menu portrait-flex-column align-items-center">
+            {{# controllers }}
+                <a href="/{{ name }}" class="text-decoration-none">
+                    <div class="d-flex justify-content-center align-items-end bg-dark menu-card shadow-lg text-align-center text-white">
+                        <p>{{ name }}</p>
+                    </div>
+                </a>
+            {{/ controllers }}
+        </div>
+        <a href="#top" class="bubble bg-white shadow hover-bottom-right">
+            <svg class="rotate-180" height="32" width="32">
+                <line x1="0" y1="8" x2="17" y2="25" style="stroke:#888888;stroke-width:4" />
+                <line x1="15" y1="25" x2="32" y2="8" style="stroke:#888888;stroke-width:4" />
+            </svg>
+        </a>
+    </div>
+</div>
