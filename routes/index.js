@@ -9,9 +9,6 @@ router = express.Router();
 root = "home";
 routesPath = __dirname;
 app.locals.controllers = [];
-excludeFromControllers = [
-    root
-];
 
 fs.readdir(routesPath, (err, files) => {
     if(err) {
@@ -24,13 +21,10 @@ fs.readdir(routesPath, (err, files) => {
     });
 
     routerFiles.forEach((file) => {
-        ext = path.extname(file);
-        routerName = path.basename(file, ext);
-        if(excludeFromControllers.indexOf(routerName) < 0) {
-            app.locals.controllers.push({ name: routerName });
-        }
-        router.use("/" + routerName, require("./" + file));
-        console.log("[Info]: Router '" + routerName + "' mounted");
+        ext = path.extname(file); 
+        ({ subrouter, subname } = require("./" + file)(app));
+        router.use("/" + subname, subrouter);
+        console.log("[Info]: Router '" + subname + "' mounted");
     });
 });
 

@@ -1,17 +1,29 @@
-const express = require("express");
-const path = require("path");
-const View = require("../src/view");
+module.exports = (app) => {
 
-subrouter = express.Router();
+    const express = require("express");
+    const path = require("path");
+    const View = require("../src/view");
 
-subrouter.get("/", (req, res) => {
-    filename = path.basename(__filename, path.extname(__filename));
-    view = new View(filename);
-    res.render(view.getPath("main"), {
-        partials: {
-            body: view.getPath("body")
-        }
-    });
-})
+    subrouter = express.Router();
+    subname = "fractales";
 
-module.exports = subrouter;
+    subrouter.get("/", (req, res) => {
+        filename = path.basename(__filename, path.extname(__filename));
+        view = new View(filename);
+        res.render(view.getPath("main"), {
+            partials: {
+                body: view.getPath("body")
+            }
+        });
+    })
+
+    app.locals.controllers.push({
+        name: "Fractales",
+        root: subname
+    })
+    
+    return { 
+        subrouter,
+        subname
+    }
+};

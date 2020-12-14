@@ -1,3 +1,9 @@
+/*
+html {
+    min-height: 100vh;
+}
+*/
+
 html, body {
     width: 100%;
     height: 100%;
@@ -55,6 +61,10 @@ html, body {
     white-space: nowrap;
 }
 
+.text-orange {
+    color: orange;
+}
+
 .title-hybrid {
     font-size: 4vh;
     font-weight: bold;
@@ -67,8 +77,16 @@ html, body {
 
 .hover-bottom-right {
     position: absolute;
+    z-index: 5;
     bottom: 5vh;
     right: 5vh;
+}
+
+.hover-top-left {
+    position: absolute;
+    z-index: 5;
+    top: 5vh;
+    left: 5vh;
 }
 
 .rotate-180 {
@@ -79,63 +97,77 @@ html, body {
     transform: rotate(90deg);
 }
 
-.home-menu :nth-child(even) {
-    margin-top: 12vh;
-}
-.home-menu :nth-child(odd) {
-    margin-top: -12vh;
-}
-.home-menu > a {
-    width: 40vh;
-    height: 40vh;
-    margin: 2vh;
-    transition: transform 0.2s, margin 0.2s, z-index 0.2s;
-}
-.home-menu > a:not(:hover) {
-    z-index: 0;
-    margin-right: -10vh !important;
-    transform: rotate(90deg);
-}
-.home-menu > a:hover {
-    z-index: 1;
-    transform: translateY(-2vh) rotate(90deg);
+.about {
+    margin: 4vh;
+    transition: height 0.5s, margin 0.5s;
 }
 
-.menu-card {
-    position: relative;
-    width: 100%;
-    height: 100%;
-    font-size: 7vh;
-    margin: 3vh;
-    padding: 3vh 3vh 1vh 3vh;
-    border: solid medium lightgreen;
-    border-radius: 2vh;
+.bg-home-menu {
+    background-image: repeating-linear-gradient(
+        rgb(231, 141, 231) 0.2vh,
+        white 0.4vh, 
+        white 1.2vh,
+        rgb(137, 207, 235) 1.4vh,
+        white 1.6vh, 
+        white 2.4vh,
+        rgb(137, 207, 235) 2.6vh, 
+        white 2.8vh,
+        white 3.6vh,
+        rgb(137, 207, 235) 3.8vh, 
+        white 4.0vh,
+        white 4.8vh,
+        rgb(231, 141, 231) 5.0vh
+    );
+}
+
+.bg-home-menu-detail {
+    background-color: rgb(236, 235, 225);
+}
+
+.home-menu {
+    padding: 6vh 2vh 0 2vh;
+    overflow-y: hidden;
+}
+
+.home-menu-wrapper {
+    overflow: hidden;
+    transition: height 0.5s;
+}
+
+.wrapper-closed {
+    height: 0 !important;
+}
+.wrapper-closed>div.about {
+    height: 0 !important;
+    margin: 0;
+}
+
+.home-menu-item-wrapper {
+    width: 0;
+    overflow: visible;
+    transform: rotate(5deg);
+}
+
+.home-menu-item {
+    height: 14vh;
+    width: fit-content;
+    margin-bottom: -2vh;
+    font-size: 5vh;
+    padding: 1.5vh;
+    padding-top: 3.5vh;
+    border-radius: 2vh 2vh 0 0;
+    transition: height 0.2s;
+}
+.home-menu-item:hover {
+    height: 26vh;
+}
+
+.home-menu-detail {
+    border-top-left-radius: 10vh;
 }
 
 @media (orientation: portrait) {
     .portrait-flex-column {
-        flex-direction: column;
-    }
-
-    .home-menu {
-        margin-left: -3vh;
-    }
-
-    .home-menu :nth-child(even) {
-        margin-top: 0vh;
-        margin-left: 12vh;
-    }
-    .home-menu :nth-child(odd) {
-        margin-top: 0vh;
-    }
-    .home-menu > a:not(:hover) {
-        z-index: 0;
-        margin-right: 0vh !important;
-        margin-bottom: -10vh !important;
-        transform: rotate(90deg);
-    }
-    .home-menu > a:hover {
-        z-index: 1;
-        transform: translateY(-2vh) rotate(90deg);
+        flex-direction: row;
     }
 }

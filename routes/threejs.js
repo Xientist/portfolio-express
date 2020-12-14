@@ -1,43 +1,55 @@
-const express = require("express");
-const path = require("path");
-const fs = require("fs");
-const View = require("../src/view");
+module.exports = (app) => {
 
-subrouter = express.Router();
+    const express = require("express");
+    const path = require("path");
+    const fs = require("fs");
+    const View = require("../src/view");
 
-modelPath = "public/resources/models/";
-modelExtension = ".glb";
+    subrouter = express.Router();
+    subname = "threejs";
 
-mwDefault = (req, res) => {
-    res.redirect("threejs/load/default");
-};
+    modelPath = "public/resources/models/";
+    modelExtension = ".glb";
 
-mwLoad = (req, res, next) => {
-    filename = path.basename(__filename, path.extname(__filename));
-    view = new View(filename);
-    mdl = req.params.model;
-    filePath = modelPath + mdl + modelExtension;
-    if(fs.existsSync(filePath)) {
-        res.locals = {
-            model: mdl
-        }
-        res.render(view.getPath("main"), {
-            partials: {
-                body: view.getPath("body"),
-                three: view.getPath("three")
+    mwDefault = (req, res) => {
+        res.redirect("threejs/load/default");
+    };
+
+    mwLoad = (req, res, next) => {
+        filename = path.basename(__filename, path.extname(__filename));
+        view = new View(filename);
+        mdl = req.params.model;
+        filePath = modelPath + mdl + modelExtension;
+        if(fs.existsSync(filePath)) {
+            res.locals = {
+                model: mdl
             }
-        });
-    } else {
-        next();
+            res.render(view.getPath("main"), {
+                partials: {
+                    body: view.getPath("body"),
+                    three: view.getPath("three")
+                }
+            });
+        } else {
+            next();
+        }
+    };
+
+    mwModelNotFound = (req, res) => {
+        mdl = req.params.model;
+        res.send("The specified model '" + mdl + "' does not exist.");
+    };
+
+    subrouter.get("/", mwDefault);
+    subrouter.get("/load/:model", mwLoad, mwModelNotFound);
+
+    app.locals.controllers.push({
+        name: "ThreeJS",
+        root: subname
+    })
+
+    return { 
+        subrouter,
+        subname
     }
 };
-
-mwModelNotFound = (req, res) => {
-    mdl = req.params.model;
-    res.send("The specified model '" + mdl + "' does not exist.");
-};
-
-subrouter.get("/", mwDefault);
-subrouter.get("/load/:model", mwLoad, mwModelNotFound);
-
-module.exports = subrouter;
