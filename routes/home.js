@@ -24,8 +24,6 @@ module.exports = (app) => {
         });
     });
 
-    return { 
-        subrouter,
-        subname
-    }
+    app.use("/" + subname, subrouter);
+    console.log("[Info]: Router '" + subname + "' mounted");
 };

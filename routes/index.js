@@ -19,12 +19,10 @@ fs.readdir(routesPath, (err, files) => {
         ext = path.extname(file);
         return path.basename(file, ext).toLowerCase() !== path.basename(__filename, ext);
     });
-
+    
     routerFiles.forEach((file) => {
-        ext = path.extname(file); 
-        ({ subrouter, subname } = require("./" + file)(app));
-        router.use("/" + subname, subrouter);
-        console.log("[Info]: Router '" + subname + "' mounted");
+        ext = path.extname(file);
+        require("./" + file)(app);
     });
 });
 

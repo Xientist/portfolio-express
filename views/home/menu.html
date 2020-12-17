@@ -1,11 +1,11 @@
 <div>
     <a id="summary"></a>
     <div class="w-100 h-100 overflow-hidden position-relative">
-        <div id="home-menu-wrapper" class="h-100 home-menu-wrapper d-flex flex-column justify-content-between align-items-center">
-            <div class="about">
+        <div id="home-menu-wrapper" class="h-100 bg-light d-flex flex-column justify-content-between align-items-center home-menu-wrapper">
+            <div class="about text-dark">
                 <h1>Hello</h1>
             </div>
-            <div class="w-100 home-menu d-flex justify-content-around align-items-end portrait-flex-column">
+            <div class="w-100 home-menu d-flex justify-content-around align-items-end">
                 {{# controllers }}
                 <div class="home-menu-item-wrapper d-flex justify-content-center">
                     <div onClick="onMenuItemClick()" class="bg-home-menu home-menu-item shadow-lg text-align-center text-dark">
@@ -15,12 +15,12 @@
                 {{/ controllers }}
             </div>
         </div>
-        <div class="h-100 bg-home-menu-detail home-menu-detail d-flex justify-content-center align-items-center text-dark position-relative">
+        <div class="h-100 bg-zebra-light home-menu-detail d-flex justify-content-center align-items-center text-dark position-relative">
             <h1>World</h1>
-            <div onClick="onMenuDetailQuit()" class="bubble bg-home-menu-detail border-bottom border-right border-dark hover-top-left">
+            <div onClick="onMenuDetailQuit()" class="bubble bg-home-menu-detail shadow hover-top-left">
                 <svg height="32" width="32">
-                    <line x1="0" y1="0" x2="32" y2="32" style="stroke:#444444;stroke-width:2" />
-                    <line x1="32" y1="0" x2="0" y2="32" style="stroke:#444444;stroke-width:2" />
+                    <line x1="0" y1="0" x2="32" y2="32" style="stroke:#FFFFFF;stroke-width:2" />
+                    <line x1="32" y1="0" x2="0" y2="32" style="stroke:#FFFFFF;stroke-width:2" />
                 </svg>
             </div>
         </div>
