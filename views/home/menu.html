@@ -5,18 +5,38 @@
             <div class="about text-dark">
                 <h1>Hello</h1>
             </div>
-            <div class="w-100 home-menu d-flex justify-content-around align-items-end">
+            <div class="w-100 home-menu d-flex portrait-flex-column justify-content-around align-items-end">
                 {{# controllers }}
                 <div class="home-menu-item-wrapper d-flex justify-content-center">
-                    <div onClick="onMenuItemClick()" class="bg-home-menu home-menu-item shadow-lg text-align-center text-dark">
+                    <div id="{{ root }}" onClick="onMenuItemClick(this.id)" class="bg-home-menu home-menu-item shadow-lg text-align-center text-dark">
                         <p>{{ name }}</p>
                     </div>
                 </div>
                 {{/ controllers }}
             </div>
         </div>
-        <div class="h-100 bg-zebra-light home-menu-detail d-flex justify-content-center align-items-center text-dark position-relative">
-            <h1>World</h1>
+        <div class="h-100 bg-zebra-light home-menu-detail d-flex justify-content-center align-items-center position-relative">
+            <div class="w-100 h-100 position-relative">
+                <div class="z-back fadein">
+                    <img id="thumb" src="resources/images/default.jpg" class="w-100 h-100 thumb opacity-25">
+                </div>
+                <div class="z-front d-flex portrait-flex-column justify-content-around align-items-center">
+                    <div class="spacer"></div>
+                    <div class="spacer"></div>
+                    <div class="p-5 d-flex flex-column justify-content-center align-items-center text-dark">
+                        <div class="pb-5 text-center">
+                            <p id="section-name" class="xh1 highlight font-weight-bold"></p>
+                        </div>
+                        <div class="pb-5 description text-center">
+                            <p class="xh2 highlight">À propos:</p>
+                            <p id="desc" class="xp highlight"></p>
+                        </div>
+                        <div>
+                            <a id="btn-detail" href="#" class="btn btn-secondary xh2">Accéder</a>
+                        </div>
+                    </div>
+                </div>            
+            </div>
             <div onClick="onMenuDetailQuit()" class="bubble bg-home-menu-detail shadow hover-top-left">
                 <svg height="32" width="32">
                     <line x1="0" y1="0" x2="32" y2="32" style="stroke:#FFFFFF;stroke-width:2" />

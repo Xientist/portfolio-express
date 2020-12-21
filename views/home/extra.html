@@ -1,9 +1,39 @@
 <script>
-    function onMenuItemClick() {
-        document.getElementById("home-menu-wrapper").classList.add("wrapper-closed");
+    elem = document.getElementById("home-menu-wrapper");
+    thumb = document.getElementById("thumb");
+    sectionName = document.getElementById("section-name");
+    desc = document.getElementById("desc");
+    btnDetail = document.getElementById("btn-detail");
+
+    function onMenuItemClick(root) {
+        elem.classList.add("wrapper-closed");
+
+        var xhr = new XMLHttpRequest(root);
+        xhr.open("GET", "/" + root + "/about", true);
+        xhr.onload = () => {
+
+            if(xhr.status !== 404) {
+
+                infos = JSON.parse(xhr.response);
+                
+                sectionName.textContent = infos["name"];
+                desc.textContent = infos["description"];
+                thumb.setAttribute("src", infos["thumbnail"]);
+            
+            } else {
+
+                sectionName.textContent = root;
+                desc.textContent = "Section " + root + " du site. Pas d'informations supplémentaires.";
+                thumb.setAttribute("src", "/resources/images/default.jpg");
+            }
+
+            btnDetail.setAttribute("href", "/" + root);
+        };
+
+        xhr.send();
     }
 
     function onMenuDetailQuit() {
-        document.getElementById("home-menu-wrapper").classList.remove("wrapper-closed");
+        elem.classList.remove("wrapper-closed");
     }
 </script>

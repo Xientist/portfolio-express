@@ -17,6 +17,16 @@ module.exports = (app) => {
         });
     })
 
+    subrouter.get("/about", (req, res) => {
+        infos = {
+            name: "Fractales",
+            description: "Génération de visuels aux propriétés mathématiques particulières et complexités infinies.",
+            thumbnail: "/resources/images/fractales_thumb.jpg"
+        }
+        res.set({ "Content-Type": "application/json"});
+        res.json(infos);
+    })
+
     app.locals.controllers.push({
         name: "Fractales",
         root: subname

@@ -74,14 +74,20 @@ html, body {
     color: orange;
 }
 
-.title-hybrid {
+.xh1 {
     font-size: 4vh;
-    font-weight: bold;
 }
 
-.subtitle-hybrid {
-    font-size: 2vh;
-    font-weight: normal;
+.xh2 {
+    font-size: 3.5vh;
+}
+
+.xh3 {
+    font-size: 3vh;
+}
+
+.xp {
+    font-size: 2.5vh;
 }
 
 .hover-bottom-right {
@@ -171,9 +177,64 @@ html, body {
     height: 26vh;
 }
 
+.z-back {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    z-index: 0;
+}
+
+.z-front {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    z-index: 2;
+}
+
+.thumb {
+    object-fit: cover;
+    object-position: left;
+}
+
+.fadein {
+    background-image: linear-gradient( to right,
+            white,
+            white 30%,
+            transparent
+        );
+}
+
+.opacity-25 {
+    opacity: 0.25;
+}
+
+.description {
+    max-width: 50vh;
+}
+
+.highlight {
+    text-shadow: 
+        white 0 0 40px, 
+        white 0 0 35px, 
+        white 0 0 30px, 
+        white 0 0 25px,
+        white 0 0 40px, 
+        white 0 0 35px, 
+        white 0 0 30px, 
+        white 0 0 25px;
+}
+
 @media (orientation: portrait) {
     .bg-zebra-light {
         background-attachment: scroll;
+    }
+
+    .portrait-flex-column {
+        flex-direction: column;
     }
 
     .home-menu-wrapper {
@@ -182,7 +243,6 @@ html, body {
     }
 
     .home-menu {
-        flex-direction: column;
         padding: 0;
         padding-bottom: 4vh;
         overflow-x: hidden;
@@ -209,5 +269,16 @@ html, body {
     }
     .home-menu-item:hover {
         height: 14vh;
+    }
+    
+    .thumb {
+        object-position: top;
+    }
+
+    .fadein {
+        background-image: linear-gradient( to bottom,
+            white,
+            transparent
+        );
     }
 }
