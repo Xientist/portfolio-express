@@ -16,23 +16,31 @@
             </div>
         </div>
         <div class="h-100 bg-zebra-light home-menu-detail d-flex justify-content-center align-items-center position-relative">
-            <div class="w-100 h-100 position-relative">
+            <div id="app" class="w-100 h-100 position-relative">
                 <div class="z-back fadein">
-                    <img id="thumb" src="resources/images/default.jpg" class="w-100 h-100 thumb opacity-25">
+                    <img v-bind:src="menu.thumb" class="w-100 h-100 thumb opacity-25">
                 </div>
                 <div class="z-front d-flex portrait-flex-column justify-content-around align-items-center">
                     <div class="spacer"></div>
                     <div class="spacer"></div>
                     <div class="p-5 d-flex flex-column justify-content-center align-items-center text-dark">
                         <div class="pb-5 text-center">
-                            <p id="section-name" class="xh1 highlight font-weight-bold"></p>
+                            <p class="xh1 highlight font-weight-bold">
+                                {{=<% %>=}}
+                                    {{ menu.name }}
+                                <%={{ }}=%>
+                            </p>
                         </div>
                         <div class="pb-5 description text-center">
                             <p class="xh2 highlight">À propos:</p>
-                            <p id="desc" class="xp highlight"></p>
+                            <p class="xp highlight">
+                                {{=<% %>=}}
+                                    {{ menu.desc }}
+                                <%={{ }}=%>
+                            </p>
                         </div>
                         <div>
-                            <a id="btn-detail" href="#" class="btn btn-secondary xh2">Accéder</a>
+                            <a v-bind:href="menu.link" class="btn btn-secondary xh2">Accéder</a>
                         </div>
                     </div>
                 </div>            

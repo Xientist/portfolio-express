@@ -1,39 +1,49 @@
+<script src="https://cdn.jsdelivr.net/npm/vue@2/dist/vue.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/vue-resource@1.5.1"></script>
 <script>
+
+    Vue.use(VueResource);
+    var app = new Vue({
+        el: "#app",
+        data: {
+            controllers: [],
+            menu: {
+                thumb: "/resources/images/default.jpg",
+                name: "",
+                desc: "",
+                link: "#"
+            }
+        },
+        mounted(){
+            this.$http.get("/METADATA").then(response => {
+                this.controllers = response.body;
+            }, response => {
+                console.log(response);
+            });
+        }
+    });
+
     elem = document.getElementById("home-menu-wrapper");
-    thumb = document.getElementById("thumb");
-    sectionName = document.getElementById("section-name");
-    desc = document.getElementById("desc");
-    btnDetail = document.getElementById("btn-detail");
 
     function onMenuItemClick(root) {
         elem.classList.add("wrapper-closed");
+        ctrl = app.controllers.find(ctrl => ctrl.root === root);
 
-        var xhr = new XMLHttpRequest(root);
-        xhr.open("GET", "/" + root + "/about", true);
-        xhr.onload = () => {
+        app.menu.name = root.charAt(0).toUpperCase() + root.slice(1);
+        app.menu.link = "/" + root;
+        app.menu.desc = "Cette section n'a pas de description associée.";
+        app.menu.thumb = "/resources/images/default.jpg";
 
-            if(xhr.status !== 404) {
-
-                infos = JSON.parse(xhr.response);
-                
-                sectionName.textContent = infos["name"];
-                desc.textContent = infos["description"];
-                thumb.setAttribute("src", infos["thumbnail"]);
-            
-            } else {
-
-                sectionName.textContent = root;
-                desc.textContent = "Section " + root + " du site. Pas d'informations supplémentaires.";
-                thumb.setAttribute("src", "/resources/images/default.jpg");
-            }
-
-            btnDetail.setAttribute("href", "/" + root);
-        };
-
-        xhr.send();
+        if(typeof ctrl !== 'undefined'){
+            if(typeof ctrl.name !== 'undefined'){ app.menu.name = ctrl.name; }
+            if(typeof ctrl.root !== 'undefined'){ app.menu.link = "/" + ctrl.root; }
+            if(typeof ctrl.description !== 'undefined'){  app.menu.desc = ctrl.description; }
+            if(typeof ctrl.thumbnail !== 'undefined'){ app.menu.thumb = ctrl.thumbnail; }
+        }
     }
 
     function onMenuDetailQuit() {
         elem.classList.remove("wrapper-closed");
     }
+
 </script>

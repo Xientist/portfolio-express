@@ -26,6 +26,7 @@ fs.readdir(routesPath, (err, files) => {
     });
 });
 
+router.get("/METADATA", (req, res) => { res.json(app.locals.controllers) });
 router.get("/", (req, res) => { res.redirect(root) });
 router.use(express.static("public"));
 
