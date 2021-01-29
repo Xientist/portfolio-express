@@ -12,7 +12,7 @@ module.exports = (app) => {
         view = new View(filename);
         res.render(view.getPath("main"), {
             partials: {
-                body: view.getPath("body")
+                mandelbrot: view.getPath("mandelbrot")
             }
         });
     })
